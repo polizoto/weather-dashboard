@@ -13,7 +13,6 @@ main.container {
 
 }
 
-
 h1 {
 color: white;
 margin: 0;
@@ -40,14 +39,6 @@ background-color: #537895;background-image: linear-gradient(315deg, #537895 0%, 
 .form-search h2 {
 font-size: 1.3em;
 }
-
- /* .form {
-    padding: 0px 15px 0px 0px;
- } */
-
- /* .search {
-    padding: 0px 15px 0px 0px;
- } */
 
  .form {
     border-bottom: 1px solid black;
