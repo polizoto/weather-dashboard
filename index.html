@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+</head>
+<body>
+<header>
+    <h1>Weather Dashboard</h1>
+</header>   
+<main class="container">
+<div class="row">
+<div class="col-lg-3 col-md-4 col-sm-12 form-search">
+    <h2>Search for a City:</h2>
+    <div class="form">
+        <form class="form-card">
+            <label for="search">
+                <input id="search" placeholder="New York" type="text">
+            </label>
+            <button class="btn">Search</button>
+        </form>
+    </div>
+    <div class="search">
+        <button class="search-results">New York</button>
+    </div>
+</div>
+<div class="col-lg-9 col-md-8 col-sm-12 form-results">
+    <div class="city-day">
+        <h2>Raleigh</h2>
+        <p>Temp: 46.85F</p>
+        <p>Wind: 46.85F</p>
+        <p>Humidity: 46.85F</p>
+        <p>UV Index: 46.85F</p>
+    </div>
+    <div class="container city-week">
+        <h3>5-day Forecast:</h3>
+        <div class="row d-flex justify-content-between week-results">
+            <div class="week-card col-lg-2 col-md-12 col-sm-12">
+            <p>12/18/2021</p>
+            <p>Wind: 12.3 MPH</p>
+        </div>
+        <div class="week-card col-lg-2 col-md-12 col-sm-12">
+            <p>12/18/2021</p>
+            <p>Wind: 12.3 MPH</p>
+        </div>
+        <div class="week-card col-lg-2 col-md-12 col-sm-12">
+            <p>12/18/2021</p>
+            <p>Wind: 12.3 MPH</p>
+        </div>
+        <div class="week-card col-lg-2 col-md-12 col-sm-12">
+            <p>12/18/2021</p>
+            <p>Wind: 12.3 MPH</p>
+        </div>
+        <div class="week-card col-lg-2 col-md-12 col-sm-12">
+            <p>12/18/2021</p>
+            <p>Wind: 12.3 MPH</p>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</main>
+<script src="assets/js/script.js"></script>
+</body>
+</html>
