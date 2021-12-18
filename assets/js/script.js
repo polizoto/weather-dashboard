@@ -192,6 +192,14 @@ var updateHistory = function (cityName) {
   addWeather(cityName, $LATITUDE, $LONGITUDE);
 }
 
+var buttonClickHandler = function(event) {
+  var clickedItem = $(event.target)
+  var cityName = clickedItem.text()
+  var latitude = event.target.getAttribute("data-latitude")
+  var longitude = event.target.getAttribute("data-longitude")
+  addWeather(cityName, latitude, longitude);
+  }
+
 var capitalize = function(str) {
   const mySentence = str
   const words = mySentence.split(" ");
@@ -214,5 +222,5 @@ var formSubmitHandler = function(event) {
   };
 
   getWeather()
-
   cityFormEl.addEventListener("submit", formSubmitHandler);
+  searchHistoryEl.addEventListener("click", buttonClickHandler);
