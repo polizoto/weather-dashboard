@@ -1,6 +1,7 @@
 var cityFormEl = document.querySelector("#city-form");
 var searchInputEl = document.querySelector("#search");
 var searchHistoryEl = document.querySelector("#search-history");
+var weatherReportEl = document.querySelector("#weather-report");
 var cityName = ""
 var cityNotFound = false;
 var $LATITUDE = ""
@@ -13,48 +14,72 @@ var weather = {
 
 // Convert Unix Time to Date
 
-// function timeConverter(UNIX_timestamp){
-//   var date = new Date(UNIX_timestamp * 1000);
-//   var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-//   var year = date.getFullYear();
-//   var month = months[date.getMonth()];
-//   var day = date.getDate();
-//   var time = month + '/' + day + '/' + year;
-//   return time;
-// }
-// console.log(timeConverter(1639760400));
+function timeConverter(UNIX_timestamp){
+  var date = new Date(UNIX_timestamp * 1000);
+  var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+  var year = date.getFullYear();
+  var month = months[date.getMonth()];
+  var day = date.getDate();
+  var time = month + '/' + day + '/' + year;
+  return time;
+}
 
-// ####### Fetch API Function ####### //  
+var addWeather = function (city, lat, long) {
+  // call API with Lat and Long coordinates
 
-// var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=35.7721&lon=-78.6386&units=imperial&cnt=1&exclude=minutely,hourly,alerts&appid=db8406e2438a3bda2d57fa0aaa4169c2'
+  var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + long + '&units=imperial&cnt=3&exclude=daily,minutely,hourly,alerts&cnt=5&appid=db8406e2438a3bda2d57fa0aaa4169c2'
+  
+  fetch(requestUrl).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('This city was not found');
+    }
+  })
+  .then(function (data) {
 
-// fetch(requestUrl)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log('Github Repo Issues \n----------');
-//     console.log(data);
-//     // console.log(data.daily[0].dt);
-//   })
+    // get current data from API
+    var date = timeConverter(data.current.dt)
+    var icon = data.current.weather[0].icon
+    var iconDescription = data.current.weather[0].description
+    var currentTemp = data.current.temp
+    var currentWind = data.current.wind_speed
+    var currentHumidity = data.current.humidity
+    var currentUV = data.current.uvi
+    
+    // Add current weather to page
+    weatherReportEl.innerHTML = " "
+    var currentWeatherEl = $(weatherReportEl)
+    var weatherEl = $("<div>")
+    .addClass("city-day")
+    .attr('id', 'current-weather')
+    var currentWeatherIcon = $("<img>")
+    .attr("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png" )
+    .attr("alt", iconDescription )
+    var cityNameEl = $("<h2>")
+    .append(city, " (", date, ") ", currentWeatherIcon)
+    var currentTempEl = $("<p>")
+    .append("Temp: ", currentTemp, "°F")
+    var currentWindEl = $("<p>")
+    .append("Wind: ", currentWind, " MPH")
+    var currentHumidityEl = $("<p>")
+    .append("Humidity: ", currentHumidity, " %")
+    var currentUVIcon = $("<span>")
+    .addClass("uv")
+    .append(currentUV)
+    var currentUVEl = $("<p>")
+    .append("UV Index: ", currentUVIcon)
+    weatherEl.append(cityNameEl, currentTempEl, currentWindEl, currentHumidityEl, currentUVEl)
+    currentWeatherEl.append(weatherEl)
+  })
+  .catch((error) => { 
+    console.log(error)
+    return alert("Error: " + city + " was not found. Try again.");
+  });
 
-// fetch(requestUrl)
-//   .then(function (response) {
-//     if (response.ok) {
-//    response.json()
-//   .then(function (data) {
-//     console.log('Github Repo Issues \n----------');
-//     console.log(data);
-//     // console.log(data.daily[0].dt);
-//   })
-// } else {
-// //  alert("Error: " + city + " was not found. Try again.")
-//  cityNotFound = true
-// }
-// });
+}
 
-// Check if city is found at the API and update history; if not return a warning message
-              
+// Check if city is found at the API and update history; if not return a warning message      
 var getCity = function (city) {
   var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=db8406e2438a3bda2d57fa0aaa4169c2'
   
@@ -135,6 +160,7 @@ var updateHistory = function (cityName) {
     row[4].remove();
   }
   loadWeather();
+  addWeather(cityName, $LATITUDE, $LONGITUDE);
 }
 
 var capitalize = function(str) {
