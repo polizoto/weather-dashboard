@@ -10,7 +10,7 @@ body {
 
 main.container {
     margin: 10px 15px 0px 15px;
-
+      /* margin: 10px 5px 0px 5px;  */
 }
 
 h1 {
@@ -61,6 +61,7 @@ input {
     background-color: #E8E8E8;
     border: none;
     padding: 10px 0px;
+    margin: 0px 0px 10px 0px;
 }
 
 .search-results:hover {
@@ -138,7 +139,7 @@ input {
         min-width: 1000px;
 }
 .form-search {
-    padding: 0px 15px 0px 0px;
+    padding: 0px 0px 0px 0px;
  }
 }
  
@@ -162,13 +163,17 @@ input {
     .week-card {
         margin: 5px 0px;
     }
-    main.container {
-        min-width: 600px;
-    }
+    /* main.container { */
+        /* min-width: 600px; */
+        /* margin: 10px 15px 0px 85px;  */
+    /* } */
     .form {
     padding: 0px 0px 0px 0px;
      }
      .form-search {
+        padding: 0px 15px 0px 0px;
+     }
+     .form-results {
         padding: 0px 15px 0px 0px;
      }
 }
