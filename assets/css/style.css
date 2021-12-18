@@ -9,7 +9,7 @@ body {
   }
 
 main.container {
-    margin: 10px 15px 0px 15px;
+    margin: 10px 0px 0px 15px;
       /* margin: 10px 5px 0px 5px;  */
 }
 
@@ -29,6 +29,11 @@ h3 {
 font-size: 1.2em;
 margin: 10px 0px 0px 0px;
 }
+
+h4 {
+    font-size: 1em;
+    margin: 10px 0px 0px 0px;
+    }
 
 header {
 margin: 0;
@@ -134,11 +139,12 @@ input {
 
   @media screen and (min-width: 1220px) {
     main.container {
-        max-width: 1160px;
+        max-width: 1500px;
 }
 .form-search {
     padding: 0px 25px 0px 0px;
  }
+
 }
 
 @media screen and (min-width: 992px) {

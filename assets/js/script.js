@@ -27,7 +27,7 @@ function timeConverter(UNIX_timestamp){
 var addWeather = function (city, lat, long) {
   // call API with Lat and Long coordinates
 
-  var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + long + '&units=imperial&cnt=3&exclude=daily,minutely,hourly,alerts&cnt=5&appid=db8406e2438a3bda2d57fa0aaa4169c2'
+  var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + long + '&units=imperial&cnt=3&exclude=minutely,hourly,alerts&cnt=5&appid=db8406e2438a3bda2d57fa0aaa4169c2'
   
   fetch(requestUrl).then((response) => {
     if (response.ok) {
@@ -49,7 +49,7 @@ var addWeather = function (city, lat, long) {
     
     // Add current weather to page
     weatherReportEl.innerHTML = " "
-    var currentWeatherEl = $(weatherReportEl)
+    var updateWeatherEl = $(weatherReportEl)
     var weatherEl = $("<div>")
     .addClass("city-day")
     .attr('id', 'current-weather')
@@ -70,7 +70,36 @@ var addWeather = function (city, lat, long) {
     var currentUVEl = $("<p>")
     .append("UV Index: ", currentUVIcon)
     weatherEl.append(cityNameEl, currentTempEl, currentWindEl, currentHumidityEl, currentUVEl)
-    currentWeatherEl.append(weatherEl)
+    updateWeatherEl.append(weatherEl)
+
+    // add five day forecast
+    var weatherWeekEl = $("<div>")
+    .addClass("container city-week")
+    var weekForecastEl = $("<h3>")
+    .append("5-day Forecast:")
+    var weatherDayEl = $("<div>")
+    .addClass("row d-flex justify-content-between week-results")
+    weatherWeekEl.append(weekForecastEl, weatherDayEl)
+    updateWeatherEl.append(weatherWeekEl)
+    for (let i = 1; i < 6; i++) {
+      var weatherCardEl = $("<div>")
+      .addClass("week-card col-lg-2 col-md-12 col-sm-12")
+      var weatherDateEl = $("<h4>")
+      .text(timeConverter(data.daily[i].dt))
+      var weatherDateWeatherIconEl = $("<img>")
+      .attr("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png" )
+      .attr("alt", data.daily[i].weather[0].description)
+      var weatherDateIconEl = $("<p>")
+      .append(weatherDateWeatherIconEl)
+      var weatherDateTempEl = $("<p>")
+      .append("Temp: ", data.daily[i].temp.day, "°F")
+      var weatherDateWindEl = $("<p>")
+      .append("Wind: ", data.daily[i].wind_speed, " MPH")
+      var weatherDateHumidityEl = $("<p>")
+      .append("Humidity: ", data.daily[i].humidity, " %")
+      weatherCardEl.append(weatherDateEl, weatherDateIconEl, weatherDateTempEl, weatherDateWindEl, weatherDateHumidityEl)
+      weatherDayEl.append(weatherCardEl)
+    }
   })
   .catch((error) => { 
     console.log(error)
