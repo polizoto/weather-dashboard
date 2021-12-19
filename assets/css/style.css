@@ -8,9 +8,9 @@ body {
     font-family: "Open Sans", sans-serif;
   }
 
-main.container {
-    margin: 10px 0px 0px 15px;
-      /* margin: 10px 5px 0px 5px;  */
+/* Added ID */
+#container {
+   margin: 0px 10px;
 }
 
 h1 {
@@ -102,13 +102,13 @@ input {
 
  .city-day {
     border: 1px solid black;
-    margin: 10px 0px;
+    margin: 10px 10px;
     padding: 0px 5px;
     border-radius: 4px;
  }
 
- div.container.city-week {
-     margin: 0px;
+ .city-week {
+     margin: 0px 10px;
      padding: 0px;
  }
 
@@ -135,67 +135,35 @@ input {
      padding: 3px 10px;
  }
 
+  /* EXTRA LARGE */
+
+@media screen and (max-width: 1200px) {
+
+}
+
   /* LARGE */
 
-  @media screen and (min-width: 1220px) {
-    main.container {
-        max-width: 1500px;
-}
-.form-search {
-    padding: 0px 25px 0px 0px;
- }
+  @media screen and (max-width: 992px) {
+      .week-card {
+          margin: 10px 0px 0px 0px;
+      }
+      .container {
+        ;
+    }
 
-}
-
-@media screen and (min-width: 992px) {
-    main.container {
-        min-width: 1000px;
-}
-.form-search {
-    padding: 0px 0px 0px 0px;
- }
 }
  
  /* MEDIUM */
- @media screen and (min-width: 768px) {
-    .week-card {
-        margin: 5px 0px;
-    }
-    main.container {
-        min-width: 900px;
-    }
-    .form {
-        padding: 0px 0px 0px 0px;
-         }
-    .form-search {
-        padding: 0px 0px 0px 0px;     
-}
+ @media screen and (max-width: 768px) {
+
  }
+
  /* SMALL*/
-@media screen and (min-width: 576px) {
-    .week-card {
-        margin: 5px 0px;
-    }
-    /* main.container { */
-        /* min-width: 600px; */
-        /* margin: 10px 15px 0px 85px;  */
-    /* } */
-    .form {
-    padding: 0px 0px 0px 0px;
-     }
-     .form-search {
-        padding: 0px 15px 0px 0px;
-     }
-     .form-results {
-        padding: 0px 15px 0px 0px;
-     }
+@media screen and (max-width: 576px) {
+
 }
 
-@media screen and (min-width: 276px) {
-    .week-card {
-        margin: 5px 0px;
-    }
-    main.container {
-        min-width: 400px;
-    }
+ /* EXTRA SMALL*/
+@media screen and (max-width: 276px) {
+
 }
