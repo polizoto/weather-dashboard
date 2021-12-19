@@ -74,16 +74,16 @@ var addWeather = function (city, lat, long) {
 
     // add five day forecast
     var weatherWeekEl = $("<div>")
-    .addClass("container city-week")
+    .addClass("city-week")
     var weekForecastEl = $("<h3>")
     .append("5-day Forecast:")
     var weatherDayEl = $("<div>")
-    .addClass("row d-flex justify-content-between week-results")
+    .addClass("week-results")
     weatherWeekEl.append(weekForecastEl, weatherDayEl)
     updateWeatherEl.append(weatherWeekEl)
     for (let i = 1; i < 6; i++) {
       var weatherCardEl = $("<div>")
-      .addClass("week-card col-lg-2 col-md-12 col-sm-12")
+      .addClass("week-card")
       var weatherDateEl = $("<h4>")
       .text(timeConverter(data.daily[i].dt))
       var weatherDateWeatherIconEl = $("<img>")

@@ -117,15 +117,20 @@ input {
  }
 
  .week-results {
-     padding: 0px 15px 0px 15px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
  }
 
  .week-card {
      background-color: #09203F;
      color: white;
      padding: 5px 40px 5px 5px;
-     margin: 0px;
      border-radius: 4px;
+     margin: 5px 5px;
+     flex: 1;
  }
 
  .uv {
@@ -135,35 +140,10 @@ input {
      padding: 3px 10px;
  }
 
-  /* EXTRA LARGE */
-
-@media screen and (max-width: 1200px) {
-
-}
-
-  /* LARGE */
-
-  @media screen and (max-width: 992px) {
-      .week-card {
-          margin: 10px 0px 0px 0px;
-      }
-      .container {
-        ;
+   @media screen and (max-width: 768px) {
+    .week-card {
+      flex: 0 100%;
+      /* text-align: center; */
     }
 
-}
- 
- /* MEDIUM */
- @media screen and (max-width: 768px) {
-
- }
-
- /* SMALL*/
-@media screen and (max-width: 576px) {
-
-}
-
- /* EXTRA SMALL*/
-@media screen and (max-width: 276px) {
-
-}
+  }
