@@ -24,6 +24,18 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 
+var uvIndexCheck = function(uv) {
+  if (uv <= 2) {
+    return "uv-favorable"
+  }
+  else if (uv > 2 && uv <= 7) {
+    return "uv-moderate"
+  }
+  else if (uv > 7 ) {
+    return "uv-severe"
+  }
+}
+
 var addWeather = function (city, lat, long) {
   // call API with Lat and Long coordinates
 
@@ -47,6 +59,7 @@ var addWeather = function (city, lat, long) {
     var currentHumidity = data.current.humidity
     var currentUV = data.current.uvi
     
+    var UVstatus = uvIndexCheck(currentUV)
     // Add current weather to page
     weatherReportEl.innerHTML = " "
     var updateWeatherEl = $(weatherReportEl)
@@ -65,12 +78,14 @@ var addWeather = function (city, lat, long) {
     var currentHumidityEl = $("<p>")
     .append("Humidity: ", currentHumidity, " %")
     var currentUVIcon = $("<span>")
-    .addClass("uv")
+    .attr('id', "uv-index")
     .append(currentUV)
+    .addClass(UVstatus)
     var currentUVEl = $("<p>")
     .append("UV Index: ", currentUVIcon)
     weatherEl.append(cityNameEl, currentTempEl, currentWindEl, currentHumidityEl, currentUVEl)
     updateWeatherEl.append(weatherEl)
+
 
     // add five day forecast
     var weatherWeekEl = $("<div>")
